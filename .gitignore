@@ -5,3 +5,4 @@ bin/
 cover.out
 # Anchored: only the repo-root session/data dir, NOT internal/store/
 /store/
+media/

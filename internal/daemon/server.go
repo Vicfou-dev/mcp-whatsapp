@@ -129,6 +129,9 @@ func (s *Server) Run(ctx context.Context) error {
 	}
 
 	rootHandler := authMiddleware(mux, s.cfg.AuthToken)
+	if s.cfg.AuthToken == "" {
+		rootHandler = loopbackGuard(rootHandler)
+	}
 
 	ln, err := net.Listen("tcp", s.cfg.Addr)
 	if err != nil {

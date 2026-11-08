@@ -20,9 +20,9 @@ import (
 var templateFS embed.FS
 
 var (
-	pairTmpl     = template.Must(template.ParseFS(templateFS, "templates/pair.html.tmpl"))
-	pairedTmpl   = template.Must(template.ParseFS(templateFS, "templates/pair_success.html.tmpl"))
-	pairCodeTmpl = template.Must(template.ParseFS(templateFS, "templates/pair_code.html.tmpl"))
+	pairTmpl     = template.Must(template.ParseFS(templateFS, "templates/pair.html.tmpl", "templates/_styles.tmpl"))
+	pairedTmpl   = template.Must(template.ParseFS(templateFS, "templates/pair_success.html.tmpl", "templates/_styles.tmpl"))
+	pairCodeTmpl = template.Must(template.ParseFS(templateFS, "templates/pair_code.html.tmpl", "templates/_styles.tmpl"))
 )
 
 const (

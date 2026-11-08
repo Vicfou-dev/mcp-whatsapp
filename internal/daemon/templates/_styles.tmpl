@@ -1,0 +1,78 @@
+{{define "styles"}}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<style>
+:root{
+  --bg:#f3f5f2;--bg-glow:rgba(37,211,102,.18);--card:#ffffff;--ink:#0f1a14;--muted:#5b6b62;
+  --line:#e3e8e4;--accent:#25d366;--accent-ink:#0b3d22;--accent-soft:#e7f8ee;--danger:#c2410c;
+  --shadow:0 1px 2px rgba(15,26,20,.04),0 12px 40px -12px rgba(15,26,20,.18);
+}
+@media (prefers-color-scheme: dark){:root{
+  --bg:#0b100d;--bg-glow:rgba(37,211,102,.12);--card:#131a16;--ink:#e8efe9;--muted:#93a39a;
+  --line:#223029;--accent:#2ee077;--accent-ink:#05210f;--accent-soft:#163323;--danger:#fb923c;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 20px 50px -20px rgba(0,0,0,.7);
+}}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  min-height:100vh;display:grid;place-items:center;padding:24px 16px;
+  font:15px/1.5 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  color:var(--ink);background:var(--bg);
+  background-image:radial-gradient(60rem 30rem at 50% -10%,var(--bg-glow),transparent 70%);
+  -webkit-font-smoothing:antialiased;
+}
+.card{
+  width:100%;max-width:440px;background:var(--card);border:1px solid var(--line);
+  border-radius:24px;box-shadow:var(--shadow);padding:28px;
+}
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:20px;color:var(--muted);font-size:13px;font-weight:500}
+.logo{width:28px;height:28px;border-radius:8px;background:var(--accent);display:grid;place-items:center}
+.logo svg{width:16px;height:16px;fill:var(--accent-ink)}
+h1{margin:0 0 6px;font-size:24px;line-height:1.2;letter-spacing:-.02em}
+.lead{margin:0 0 22px;color:var(--muted)}
+.qr-wrap{position:relative;margin:0 auto 18px;width:max-content;padding:14px;border-radius:20px;background:#fff;border:1px solid var(--line)}
+.qr-wrap img{display:block;width:248px;height:248px;max-width:62vw;max-height:62vw;image-rendering:pixelated;border-radius:6px}
+.corner{position:absolute;width:26px;height:26px;border:3px solid var(--accent)}
+.c1{top:-2px;left:-2px;border-right:0;border-bottom:0;border-top-left-radius:20px}
+.c2{top:-2px;right:-2px;border-left:0;border-bottom:0;border-top-right-radius:20px}
+.c3{bottom:-2px;left:-2px;border-right:0;border-top:0;border-bottom-left-radius:20px}
+.c4{bottom:-2px;right:-2px;border-left:0;border-top:0;border-bottom-right-radius:20px}
+.scan{position:absolute;left:14px;right:14px;height:2px;top:14px;background:linear-gradient(90deg,transparent,var(--accent),transparent);
+  box-shadow:0 0 12px var(--accent);animation:scan 2.5s ease-in-out infinite alternate;opacity:.8}
+@keyframes scan{to{top:calc(100% - 16px)}}
+.live{display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;color:var(--muted);margin-bottom:22px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 var(--accent);animation:pulse 1.6s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 8px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.bar{height:3px;border-radius:3px;background:var(--line);overflow:hidden;margin:-12px auto 22px;max-width:200px}
+.bar i{display:block;height:100%;background:var(--accent);animation:fill 5s linear forwards;width:0}
+@keyframes fill{to{width:100%}}
+ol.steps{list-style:none;margin:0 0 22px;padding:0;display:grid;gap:10px;counter-reset:s}
+ol.steps li{counter-increment:s;display:flex;gap:12px;align-items:flex-start}
+ol.steps li::before{content:counter(s);flex:none;width:24px;height:24px;border-radius:50%;background:var(--accent-soft);color:var(--ink);
+  display:grid;place-items:center;font-size:12px;font-weight:600}
+b{font-weight:600}
+details{border-top:1px solid var(--line);padding-top:16px}
+summary{cursor:pointer;color:var(--muted);font-size:14px;list-style:none;display:flex;align-items:center;gap:8px}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"";width:6px;height:6px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(-45deg);transition:transform .2s}
+details[open] summary::before{transform:rotate(45deg)}
+details p{color:var(--muted);font-size:13px;margin:12px 0}
+form.row{display:flex;gap:8px}
+input[type=text]{flex:1;min-width:0;font:inherit;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:12px;padding:11px 14px;outline:none}
+input[type=text]:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+button,.btn{font:inherit;font-weight:600;border:0;border-radius:12px;padding:11px 16px;cursor:pointer;background:var(--accent);color:var(--accent-ink);text-decoration:none;display:inline-block}
+button:hover,.btn:hover{filter:brightness(1.05)}
+.ghost{background:transparent;color:var(--danger);border:1px solid var(--line)}
+.code{font:600 34px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.18em;text-align:center;padding:22px 12px;margin:0 0 18px;
+  border-radius:16px;background:var(--accent-soft);border:1px dashed var(--accent);user-select:all}
+.ok{width:64px;height:64px;border-radius:50%;background:var(--accent-soft);display:grid;place-items:center;margin:4px 0 18px}
+.ok svg{width:30px;height:30px;stroke:var(--accent);fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:40;stroke-dashoffset:40;animation:draw .6s .15s ease-out forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.note{font-size:12px;color:var(--muted);margin:14px 0 0}
+.err{color:var(--danger);font-weight:500}
+@media (prefers-reduced-motion: reduce){*{animation:none!important}.bar i{width:100%}.ok svg{stroke-dashoffset:0}}
+</style>
+{{end}}
+{{define "brand"}}
+<div class="brand"><span class="logo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.3Z"/></svg></span>whatsapp-mcp · local daemon</div>
+{{end}}

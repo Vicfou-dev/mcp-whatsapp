@@ -1,14 +1,18 @@
 <!doctype html>
-<html><head>
+<html lang="en"><head>
 <meta charset="utf-8">
 <title>Paired</title>
-<style>body{font-family:system-ui,sans-serif;max-width:32rem;margin:4rem auto;padding:0 1rem}</style>
+{{template "styles"}}
 </head><body>
+<main class="card">
+{{template "brand"}}
+<div class="ok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
 <h1>Already paired</h1>
-<p>This daemon is connected to WhatsApp. You can close this tab.</p>
+<p class="lead">This daemon is connected to WhatsApp and ready for your MCP clients. You can close this tab.</p>
 <form method="post" action="/pair/reset">
   <input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
-  <p><button type="submit">Force re-pair</button></p>
+  <button class="ghost" type="submit">Force re-pair</button>
 </form>
-<p><small>&ldquo;Force re-pair&rdquo; disconnects this device from WhatsApp and starts a fresh pairing flow. Use it if you want to switch accounts.</small></p>
+<p class="note">“Force re-pair” disconnects this device from WhatsApp and starts a fresh pairing flow. Use it to switch accounts.</p>
+</main>
 </body></html>
